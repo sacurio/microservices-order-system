@@ -1,12 +1,38 @@
 version: "3.8"
 
 services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: src/ApiGateway/Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      user-service:
+        condition: service_healthy
+      product-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+      payment-service:
+        condition: service_healthy
+    networks:
+      - app_network
+
   user-service:
     build:
       context: .
       dockerfile: src/UserService/Dockerfile
     ports:
       - "5021:8040"
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://user-service:8040/api/users/health"]
+      interval: 30s
+      retries: 3
+      start_period: 15s
+      timeout: 5s
 
   product-service:
     build:
@@ -14,6 +40,15 @@ services:
       dockerfile: src/ProductService/Dockerfile
     ports:
       - "5022:8040"
+    networks:
+      - app_network
+    healthcheck:
+      test:
+        ["CMD", "curl", "-f", "http://product-service:8040/api/products/health"]
+      interval: 30s
+      retries: 3
+      start_period: 15s
+      timeout: 5s
 
   order-service:
     build:
@@ -21,6 +56,14 @@ services:
       dockerfile: src/OrderService/Dockerfile
     ports:
       - "5023:8040"
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://order-service:8040/api/orders/health"]
+      interval: 30s
+      retries: 3
+      start_period: 15s
+      timeout: 5s
 
   payment-service:
     build:
@@ -28,3 +71,16 @@ services:
       dockerfile: src/PaymentService/Dockerfile
     ports:
       - "5024:8040"
+    networks:
+      - app_network
+    healthcheck:
+      test:
+        ["CMD", "curl", "-f", "http://payment-service:8040/api/payments/health"]
+      interval: 30s
+      retries: 3
+      start_period: 15s
+      timeout: 5s
+
+networks:
+  app_network:
+    driver: bridge

@@ -7,13 +7,13 @@ RUN apt-get update && apt-get install -y curl
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY /src/OrderService/OrderService.csproj ./
+COPY /src/ApiGateway/ApiGateway.csproj ./
 RUN dotnet restore
 
-COPY /src/OrderService/ ./
+COPY /src/ApiGateway/ ./
 RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "OrderService.dll"]
+ENTRYPOINT ["dotnet", "ApiGateway.dll"]

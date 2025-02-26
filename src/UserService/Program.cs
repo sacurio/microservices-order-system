@@ -14,4 +14,13 @@ app.UseSwaggerUI();
 app.UseAuthorization();
 app.MapControllers();
 
+app.MapGet("/api/users/health", () => Results.Json(new { status = "Healthy" }))
+    .WithName("HealthCheck")
+    .WithTags("System");
+
+app.UseCors(policy => policy
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 app.Run();
