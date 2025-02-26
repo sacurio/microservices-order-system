@@ -68,3 +68,11 @@ The idea behind, it try to simulate an order system for an e-commerce store.
 ## 📍 General Architecture Diagram
 
 _(Coming soon with more details)_
+
+## Uses cases
+
+## Async communicationwith RabbitMQ
+
+The `OrderService` microservice publish an event `OrderCreated`.
+
+`PaymentService` and `InventoryService` are subscribed and react to the event.
