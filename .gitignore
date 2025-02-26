@@ -1,0 +1,10 @@
+**/bin
+**/obj
+**/src/OrderService/obj/
+**/src/OrderService/bin/
+**/src/PaymentService/obj/
+**/src/PaymentService/bin/
+**/src/ProductService/obj/
+**/src/ProductService/bin/
+**/src/UserService/obj/
+**/src/UserService/bin/
