@@ -1,4 +1,20 @@
+using MassTransit;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("rabbitmq", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+    });
+});
+
+builder.Services.AddScoped<OrderService>();
 
 builder.WebHost.UseUrls("http://+:8040");
 builder.Services.AddControllers();
@@ -21,5 +37,7 @@ app.UseCors(policy => policy
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
+
+app.MapOrderEndpoints();
 
 app.Run();
