@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4A70CA82-6A2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "src\ApiGateway\ApiGateway.csproj", "{8DC5E66A-EBB7-4543-805B-0D7D40A49129}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "src\Contracts\Contracts.csproj", "{A31CEC46-084F-451E-B61D-2943FF662612}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,8 +46,13 @@ Global
 		{8DC5E66A-EBB7-4543-805B-0D7D40A49129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DC5E66A-EBB7-4543-805B-0D7D40A49129}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DC5E66A-EBB7-4543-805B-0D7D40A49129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31CEC46-084F-451E-B61D-2943FF662612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31CEC46-084F-451E-B61D-2943FF662612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31CEC46-084F-451E-B61D-2943FF662612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31CEC46-084F-451E-B61D-2943FF662612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8DC5E66A-EBB7-4543-805B-0D7D40A49129} = {4A70CA82-6A24-4372-B6CB-7884876B7BF0}
+		{A31CEC46-084F-451E-B61D-2943FF662612} = {4A70CA82-6A24-4372-B6CB-7884876B7BF0}
 	EndGlobalSection
 EndGlobal
