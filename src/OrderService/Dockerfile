@@ -7,10 +7,11 @@ RUN apt-get update && apt-get install -y curl
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY /src/OrderService/OrderService.csproj ./
-RUN dotnet restore
+COPY src/Contracts/ Contracts/
+COPY src/OrderService/ OrderService/
 
-COPY /src/OrderService/ ./
+WORKDIR /src/OrderService
+RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
